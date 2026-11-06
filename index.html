@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬픔 토마토 | Sad Tomato Conceptual Archive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Font: Noto Serif KR & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Serif+KR:wght@300;400;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gallery: {
+                            bg: '#080808',
+                            card: '#121212',
+                            border: '#242424',
+                            muted: '#666666',
+                            text: '#E0E0E0',
+                            accent: '#FF3333'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif KR"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Global & Custom Styles */
+        body {
+            background-color: #080808;
+            color: #E0E0E0;
+            font-family: 'Noto Serif KR', serif;
+            overflow-x: hidden;
+        }
+
+        /* Static Noise Grain Overlay */
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            content: "";
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 999;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Subtle Ambient Glow */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 51, 51, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Particle Dissolve Canvas */
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Thermal Receipt Printing Animation */
+        @keyframes printReceipt {
+            0% {
+                max-height: 0;
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                max-height: 800px;
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-print {
+            animation: printReceipt 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #242424;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444444;
+        }
+
+        /* Custom Glitch / High Contrast Art Filter */
+        .art-image-container img {
+            filter: grayscale(100%) contrast(140%) brightness(85%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+        .art-image-container:hover img {
+            filter: grayscale(0%) contrast(110%) brightness(100%);
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-gallery-accent selection:text-black">
+
+    <!-- Noise Grain -->
+    <div class="noise-bg"></div>
+
+    <!-- Ambient Lighting FX -->
+    <div class="ambient-glow top-0 left-1/2 -translate-x-1/2"></div>
+    <div class="ambient-glow bottom-20 right-0"></div>
+
+    <!-- Header / Navigation -->
+    <header class="relative z-20 border-b border-gallery-border px-6 py-6 md:px-12 flex justify-between items-center bg-gallery-bg/80 backdrop-blur-md sticky top-0">
+        <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-gallery-accent inline-block animate-pulse"></span>
+            <span class="font-mono text-xs tracking-widest text-gallery-muted uppercase">EXHIBIT #00-0%</span>
+        </div>
+        <h1 class="font-serif font-black text-xl md:text-2xl tracking-tighter text-white uppercase">
+            슬픔 토마토 <span class="font-mono text-xs font-normal text-gallery-muted ml-2">SAD TOMATO</span>
+        </h1>
+        <div class="hidden sm:block font-mono text-xs text-gallery-muted text-right">
+            <span>2026.10.29 – 2026.11.30</span>
+            <span class="block text-[10px] text-gallery-accent">STATUS: UNFUNDED (0%)</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-28 md:space-y-40">
+
+        <!-- SECTION 1: HERO CONCEPTUAL MANIFESTO -->
+        <section class="space-y-8 text-center max-w-3xl mx-auto pt-6">
+            <div class="inline-block border border-gallery-border px-4 py-1 rounded-full font-mono text-xs text-gallery-muted">
+                CONCEPTUAL ARCHIVE & DISINTEGRATION
+            </div>
+            
+            <h2 class="font-serif text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                “낭비된 열정과 0.1평 방구석의 고뇌,<br/>
+                <span class="italic font-normal text-gallery-muted underline decoration-gallery-accent/40 decoration-1">무위의 낭만</span>에 바치는 기록.”
+            </h2>
+
+            <p class="font-sans text-sm md:text-base text-gallery-muted font-light leading-relaxed max-w-xl mx-auto">
+                익명의 개인들이 겪는 미분양된 감정과 B급 자존감을 박제하는 실험실. 
+                아크릴 니스 칠 뒤에 가려진 0% 달성률의 슬픔을 입체적으로 관조합니다.
+            </p>
+
+            <div class="pt-4 flex justify-center gap-8 font-mono text-xs text-gallery-muted border-t border-gallery-border/40 max-w-xs mx-auto">
+                <div>
+                    <span class="block font-bold text-white text-base">500,000₩</span>
+                    <span>GOAL</span>
+                </div>
+                <div class="border-r border-gallery-border/40"></div>
+                <div>
+                    <span class="block font-bold text-gallery-accent text-base">0%</span>
+                    <span>FUNDED</span>
+                </div>
+                <div class="border-r border-gallery-border/40"></div>
+                <div>
+                    <span class="block font-bold text-white text-base">0</span>
+                    <span>PATRONS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTERACTIVE DISTRESS DISINTEGRATION -->
+        <section class="space-y-8 border border-gallery-border p-6 md:p-12 rounded-lg bg-gallery-card/40 backdrop-blur-sm relative overflow-hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gallery-border pb-6">
+                <div>
+                    <span class="font-mono text-xs text-gallery-accent uppercase tracking-widest">INTERACTIVE ROOM 01</span>
+                    <h3 class="font-serif text-2xl font-bold text-white mt-1">고민 소화관 (Distress Archive)</h3>
+                </div>
+                <p class="font-mono text-xs text-gallery-muted max-w-xs">
+                    당신의 은밀한 우울과 고민을 입력하십시오. 엔터를 누르면 디지털 공허 속으로 소화되어 사라집니다.
+                </p>
+            </div>
+
+            <!-- Input & Canvas Area -->
+            <div class="relative min-h-[220px] flex flex-col justify-center items-center">
+                <canvas id="particleCanvas"></canvas>
+
+                <div id="inputBoxContainer" class="w-full max-w-xl space-y-4 relative z-20">
+                    <div class="relative">
+                        <textarea 
+                            id="distressInput" 
+                            rows="3" 
+                            placeholder="이곳에 소화시키고 싶은 고민이나 자괴감을 적어주세요..." 
+                            class="w-full bg-black/80 border border-gallery-border rounded-md p-4 font-sans text-sm md:text-base text-white placeholder-gallery-muted focus:outline-none focus:border-gallery-accent transition-colors resize-none"
+                        ></textarea>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <span class="font-mono text-xs text-gallery-muted">PRESS ENTER TO DISSOLVE</span>
+                        <button 
+                            id="dissolveBtn"
+                            onclick="triggerDissolve()" 
+                            class="font-mono text-xs bg-white text-black font-semibold px-6 py-3 rounded hover:bg-gallery-accent hover:text-white transition-all flex items-center gap-2"
+                        >
+                            <i data-lucide="flame" class="w-4 h-4"></i>
+                            소화시키기 (Dissolve)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resulting Artwork Caption Display -->
+                <div id="artCaption" class="hidden relative z-20 text-center space-y-3 py-6 animate-fade-in max-w-md">
+                    <span class="font-mono text-[10px] text-gallery-accent tracking-widest uppercase border border-gallery-accent/40 px-2 py-0.5 rounded">CATALOG NO. <span id="captionNo">ST-404</span></span>
+                    <h4 id="captionTitle" class="font-serif text-xl md:text-2xl font-bold text-white">“0% 달성률의 조용한 무덤”</h4>
+                    <p id="captionDesc" class="font-serif text-xs md:text-sm text-gallery-muted italic">
+                        입력된 고민은 소화되어 공허로 환원되었습니다. 당신의 우울은 이제 관념적인 현대미술 조각으로 박제되었습니다.
+                    </p>
+                    <button 
+                        onclick="resetDissolve()" 
+                        class="font-mono text-xs text-gallery-muted underline hover:text-white pt-2 inline-block"
+                    >
+                        새 고민 입력하기 (New Entry)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: OBJECT GALLERY (SURREAL/B-GRADE EXHIBITS) -->
+        <section class="space-y-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-gallery-border pb-6">
+                <div>
+                    <span class="font-mono text-xs text-gallery-accent uppercase tracking-widest">GALLERY ROOM 02</span>
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-white mt-1">잉여 오브제 전시실 (Object Gallery)</h3>
+                </div>
+                <span class="font-mono text-xs text-gallery-muted">4 EXHIBITS ON DISPLAY</span>
+            </div>
+
+            <!-- Grid of Art Pieces -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                
+                <!-- Exhibit 1 -->
+                <div class="border border-gallery-border rounded-lg p-5 bg-gallery-card/20 space-y-4 hover:border-gallery-muted transition-colors">
+                    <div class="art-image-container aspect-square bg-black border border-gallery-border overflow-hidden relative flex items-center justify-center p-6">
+                        <svg class="w-40 h-40 text-white/80" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="50" cy="55" r="35" stroke="currentColor" stroke-dasharray="2 2"/>
+                            <path d="M45 20 C45 10, 55 10, 55 20 L50 25 Z" fill="currentColor"/>
+                            <circle cx="40" cy="45" r="3" fill="currentColor"/>
+                            <circle cx="60" cy="45" r="3" fill="currentColor"/>
+                            <path d="M 38 68 Q 50 55 62 68" stroke="currentColor" stroke-width="2"/>
+                            <!-- Tear drop -->
+                            <path d="M 60 52 C 60 52, 63 58, 60 60 C 58 60, 57 58, 60 52 Z" fill="currentColor"/>
+                        </svg>
+                        <span class="absolute bottom-3 right-3 font-mono text-[10px] text-gallery-muted">FIG 1.0 — ACRYLIC & VARNISH</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-serif text-lg font-bold text-white">슬픈 토마토 1호 (Sad Tomato No.1)</h4>
+                            <span class="font-mono text-xs text-gallery-accent">2026</span>
+                        </div>
+                        <p class="font-serif text-xs text-gallery-muted leading-relaxed">
+                            다이소 플라스틱 용기에 주황·빨강 아크릴 물감을 떡칠한 후 투명 니스로 마감한 오브제. 1차원적인 우울의 조형화이자 초등학생 방과후 미술 교실의 아우라를 지님.
+                        </p>
+                        <div class="font-mono text-[11px] text-gallery-muted pt-2 border-t border-gallery-border/50 flex justify-between">
+                            <span>소재: 플라스틱 용기, 아크릴, 바니시</span>
+                            <span>시가: 0₩</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exhibit 2 -->
+                <div class="border border-gallery-border rounded-lg p-5 bg-gallery-card/20 space-y-4 hover:border-gallery-muted transition-colors">
+                    <div class="art-image-container aspect-square bg-black border border-gallery-border overflow-hidden relative flex items-center justify-center p-6">
+                        <svg class="w-40 h-40 text-white/80" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="25" y="25" width="50" height="50" rx="3" stroke="currentColor"/>
+                            <line x1="25" y1="40" x2="75" y2="40" stroke="currentColor"/>
+                            <circle cx="50" cy="60" r="8" stroke="currentColor"/>
+                            <path d="M 47 60 L 53 60" stroke="currentColor"/>
+                            <text x="30" y="35" font-family="monospace" font-size="6" fill="currentColor">RECORDER 3,500₩</text>
+                        </svg>
+                        <span class="absolute bottom-3 right-3 font-mono text-[10px] text-gallery-muted">FIG 2.0 — KEYRING & AUDIO</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-serif text-lg font-bold text-white">3,500원짜리 자조 음성 모듈</h4>
+                            <span class="font-mono text-xs text-gallery-accent">2026</span>
+                        </div>
+                        <p class="font-serif text-xs text-gallery-muted leading-relaxed">
+                            어린이용 녹음 키링을 그대로 이식한 기계적 컴포넌트. 버튼을 누르면 자가 치유를 빙자한 백수 창작자의 짠한 한숨 소리가 3초간 재생됨.
+                        </p>
+                        <div class="font-mono text-[11px] text-gallery-muted pt-2 border-t border-gallery-border/50 flex justify-between">
+                            <span>소재: 다이소 키링, 음성칩</span>
+                            <span>시가: 3,500₩</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exhibit 3 -->
+                <div class="border border-gallery-border rounded-lg p-5 bg-gallery-card/20 space-y-4 hover:border-gallery-muted transition-colors">
+                    <div class="art-image-container aspect-square bg-black border border-gallery-border overflow-hidden relative flex items-center justify-center p-6">
+                        <svg class="w-40 h-40 text-white/80" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="20" y="15" width="60" height="70" stroke="currentColor" stroke-dasharray="4 2"/>
+                            <rect x="25" y="20" width="50" height="40" stroke="currentColor"/>
+                            <line x1="30" y1="70" x2="70" y2="70" stroke="currentColor"/>
+                            <line x1="30" y1="75" x2="55" y2="75" stroke="currentColor"/>
+                            <text x="35" y="42" font-family="sans-serif" font-size="8" fill="currentColor">RENTAL: 200,000₩</text>
+                            <text x="40" y="52" font-family="monospace" font-size="6" fill="currentColor">[PENDING]</text>
+                        </svg>
+                        <span class="absolute bottom-3 right-3 font-mono text-[10px] text-gallery-muted">FIG 3.0 — UNBUILT ARCHITECTURE</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-serif text-lg font-bold text-white">미완의 20만원 카페 대관청구서</h4>
+                            <span class="font-mono text-xs text-gallery-accent">2026</span>
+                        </div>
+                        <p class="font-serif text-xs text-gallery-muted leading-relaxed">
+                            동네 카페 대관 문의 후 20만 원이라는 자본주의의 높은 벽에 가로막혀 영구 보류된 백수의 장소성 시도. 무단 설치의 욕망이 좌절된 평화의 증거.
+                        </p>
+                        <div class="font-mono text-[11px] text-gallery-muted pt-2 border-t border-gallery-border/50 flex justify-between">
+                            <span>소재: 견적 통화 기록, 미납금</span>
+                            <span>시가: 200,000₩</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exhibit 4 -->
+                <div class="border border-gallery-border rounded-lg p-5 bg-gallery-card/20 space-y-4 hover:border-gallery-muted transition-colors">
+                    <div class="art-image-container aspect-square bg-black border border-gallery-border overflow-hidden relative flex items-center justify-center p-6">
+                        <svg class="w-40 h-40 text-white/80" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="30" y="20" width="40" height="60" stroke="currentColor"/>
+                            <circle cx="50" cy="50" r="12" stroke="currentColor"/>
+                            <path d="M 46 46 L 54 54 M 54 46 L 46 54" stroke="currentColor"/>
+                            <text x="32" y="30" font-family="monospace" font-size="5" fill="currentColor">VIBE_CODING.JS</text>
+                        </svg>
+                        <span class="absolute bottom-3 right-3 font-mono text-[10px] text-gallery-muted">FIG 4.0 — DIGITAL GRAVEYARD</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-serif text-lg font-bold text-white">넷틀리파이 무료 배포 디지털 묘비</h4>
+                            <span class="font-mono text-xs text-gallery-accent">2026</span>
+                        </div>
+                        <p class="font-serif text-xs text-gallery-muted leading-relaxed">
+                            바이브 코딩으로 뚝딱 만든 원페이지 사이트. 손맛과 카타르시스가 결여되어 제작자 본인조차 현타를 느끼게 만든 차가운 픽셀 아카이브.
+                        </p>
+                        <div class="font-mono text-[11px] text-gallery-muted pt-2 border-t border-gallery-border/50 flex justify-between">
+                            <span>소재: Netlify Free Host, AI Prompt</span>
+                            <span>시가: 0.00$</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: THERMAL RECEIPT GENERATOR -->
+        <section class="space-y-8 border-t border-gallery-border pt-16">
+            <div class="text-center space-y-3 max-w-xl mx-auto">
+                <span class="font-mono text-xs text-gallery-accent uppercase tracking-widest">INTERACTIVE ROOM 03</span>
+                <h3 class="font-serif text-2xl md:text-3xl font-bold text-white">영혼의 영수증 발행기 (Existential Receipt)</h3>
+                <p class="font-serif text-xs md:text-sm text-gallery-muted">
+                    오늘 당신이 소비한 쓸데없는 열정과 실존적 팩트 폭격을 영수증 형태로 출력합니다.
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center space-y-6">
+                <button 
+                    onclick="generateReceipt()" 
+                    class="font-mono text-xs border border-white/80 bg-white/5 text-white hover:bg-white hover:text-black px-8 py-4 rounded transition-all flex items-center gap-2 group tracking-wider uppercase"
+                >
+                    <i data-lucide="printer" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    영수증 출력하기 (Print Receipt)
+                </button>
+
+                <!-- Receipt Paper Outlet Container -->
+                <div id="receiptContainer" class="w-full max-w-sm min-h-[10px]">
+                    <!-- Dynamic Receipt Inserted Here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gallery-border mt-32 py-12 px-6 md:px-12 bg-black text-gallery-muted font-mono text-xs space-y-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2 text-white">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-gallery-accent"></i>
+                    <span class="font-bold">정신건강 위기상담전화: 109</span>
+                </div>
+                <p class="text-[11px] text-gallery-muted max-w-md">
+                    과도한 힙스터병, 방구석 창작욕, 텀블벅 달성률 0%로 인한 우울감은 전문가의 상담을 권장합니다. 24시간 핫라인 109.
+                </p>
+            </div>
+
+            <div class="text-left md:text-right space-y-1 text-[11px]">
+                <p>© 2026 SAD TOMATO CONCEPTUAL ARCHIVE.</p>
+                <p class="text-gallery-muted/60">CURATED BY REALITY CHECK GUARDIAN</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // -------------------------------------------------------------
+        // SECTION 2: PARTICLE DISSOLVE EFFECT & CAPTION GENERATOR
+        // -------------------------------------------------------------
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const cynicalCaptions = [
+            { title: "“0% 달성률의 조용한 무덤”", desc: "후원자 0명, 26일 남음. 텀블벅 알고리즘조차 차갑게 외면한 순수 백수 예술혼의 자진 납세." },
+            { title: "“방구석 0.1평의 고뇌”", desc: "코르크 판 위에서 펼쳐진 원대한 팝업스토어의 꿈. 오프라인 카페 민폐를 막아낸 현실 감각의 승리." },
+            { title: "“니스(Varnish) 떡칠의 페이소스”", desc: "말라붙지 않은 아크릴 위에 쏟아부은 광택제. 겉은 번쩍이지만 속은 초등학생 환경정리 과제물." },
+            { title: "“20만원짜리 실존적 브레이크”", desc: "대관료 앞에서 무릎 꿇은 근사함의 욕망. 통장 잔고가 선물한 가장 비싼 현실 직시." },
+            { title: "“바이브 코딩의 차가운 픽셀”", desc: "손맛도, 카타르시스도 없이 네트리파이 무료 서버에 박제된 영혼 없는 원페이지 코드." }
+        ];
+
+        class Particle {
+            constructor(x, y, text) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 4;
+                this.vy = (Math.random() - 0.8) * 3;
+                this.alpha = 1;
+                this.color = Math.random() > 0.2 ? '#FFFFFF' : '#FF3333';
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.015;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function triggerDissolve() {
+            const input = document.getElementById('distressInput');
+            const text = input.value.trim();
+
+            if (!text) {
+                input.focus();
+                input.classList.add('border-gallery-accent');
+                setTimeout(() => input.classList.remove('border-gallery-accent'), 1000);
+                return;
+            }
+
+            // Create particles from input box center
+            const rect = canvas.getBoundingClientRect();
+            const startX = rect.width / 2;
+            const startY = rect.height / 2;
+
+            for (let i = 0; i < 120; i++) {
+                particles.push(new Particle(
+                    startX + (Math.random() - 0.5) * 200, 
+                    startY + (Math.random() - 0.5) * 50
+                ));
+            }
+
+            // Hide input container, show caption result
+            document.getElementById('inputBoxContainer').classList.add('hidden');
+            
+            // Randomize Caption
+            const randomCap = cynicalCaptions[Math.floor(Math.random() * cynicalCaptions.length)];
+            document.getElementById('captionNo').innerText = `ST-${Math.floor(Math.random() * 899 + 100)}`;
+            document.getElementById('captionTitle').innerText = randomCap.title;
+            document.getElementById('captionDesc').innerText = randomCap.desc;
+
+            document.getElementById('artCaption').classList.remove('hidden');
+
+            animateParticles();
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) particles.splice(index, 1);
+            });
+
+            if (particles.length > 0) {
+                requestAnimationFrame(animateParticles);
+            }
+        }
+
+        function resetDissolve() {
+            document.getElementById('distressInput').value = '';
+            document.getElementById('artCaption').classList.add('hidden');
+            document.getElementById('inputBoxContainer').classList.remove('hidden');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+
+        // -------------------------------------------------------------
+        // SECTION 4: THERMAL RECEIPT GENERATOR
+        // -------------------------------------------------------------
+        const receiptItems = [
+            { item: "카페 대관 시도 회피권", price: "200,000₩", note: "사장님 안구 보호 완료" },
+            { item: "텀블벅 0% 달성 영구권", price: "0₩", note: "후원자 0명의 진정성" },
+            { item: "초딩풍 아크릴 니스 코팅", price: "3,500₩", note: "방가후 미술교실 피날레" },
+            { item: "바이브 코딩 현타 감용액", price: "0.00$", note: "카타르시스 결여 치료용" },
+            { item: "현실 직시용 냉수 한 대접", price: "FREE", note: "백수 탈출 자소서 작성용" }
+        ];
+
+        function generateReceipt() {
+            const container = document.getElementById('receiptContainer');
+            container.innerHTML = ''; // Clear previous
+
+            const now = new Date();
+            const dateStr = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+            // Pick 3 random items
+            const shuffled = [...receiptItems].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 3);
+
+            const receiptHtml = `
+                <div class="animate-print bg-white text-black p-6 font-mono text-xs shadow-2xl rounded-sm border-t-8 border-black relative overflow-hidden select-none">
+                    <!-- Receipt Zig-zag Edge Top -->
+                    <div class="text-center border-b border-black/40 pb-4 mb-4 space-y-1">
+                        <h4 class="font-black text-base tracking-tighter uppercase">SAD TOMATO ARCHIVE</h4>
+                        <p class="text-[10px] text-gray-600">OFFICIAL EXISTENTIAL RECEIPT</p>
+                        <p class="text-[10px] text-gray-500 pt-1">${dateStr} | POS #01</p>
+                    </div>
+
+                    <div class="space-y-3 border-b border-black/40 pb-4 mb-4">
+                        <div class="flex justify-between font-bold border-b border-dashed border-gray-400 pb-1 text-[11px]">
+                            <span>ITEM DESCRIPTION</span>
+                            <span>QTY / PRICE</span>
+                        </div>
+                        ${selected.map(i => `
+                            <div class="space-y-0.5">
+                                <div class="flex justify-between">
+                                    <span class="font-bold">${i.item}</span>
+                                    <span>${i.price}</span>
+                                </div>
+                                <div class="text-[9px] text-gray-500 italic">* ${i.note}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="space-y-1 border-b border-black/40 pb-4 mb-4">
+                        <div class="flex justify-between text-gray-600">
+                            <span>SUBTOTAL</span>
+                            <span>203,500 ₩</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>PATRON DISCOUNT (0%)</span>
+                            <span>- 0 ₩</span>
+                        </div>
+                        <div class="flex justify-between font-black text-sm pt-1">
+                            <span>TOTAL REALITY CHECK</span>
+                            <span>203,500 ₩</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center space-y-2 pt-1">
+                        <p class="text-[10px] font-bold">“자소서를 쓰고 직장인이 되십시오.”</p>
+                        <!-- Fake Barcode -->
+                        <div class="font-mono text-[8px] tracking-widest pt-1 opacity-70">
+                            ||| | |||| ||| ||||| || |||| ||||
+                        </div>
+                        <p class="text-[9px] text-gray-400">THANK YOU FOR VISITING THE VOID</p>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = receiptHtml;
+        }
+    </script>
+</body>
+</html>
